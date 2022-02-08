@@ -31,13 +31,51 @@ public class CustomerCheck
      *  returns false otherwise, as described in part (b) */
     public boolean couponApplies()
     {
-        /* to be implemented in part (b) */
+        for (MenuItem item : check)
+        {
+            if( item.isDailySpecial() == true)
+            {
+                return false;
+            }
+        }
+
+        if(totalPrices() < 40)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
 
     }
 
     /** Calculates the final cost of this check, as described in part (c) */
     public double calculateCheck()
     {
-        /* to be implemented in part (c) */
+        double originalCheck = totalPrices();
+        double totalFinal = totalPrices();
+        double tip = 0.0;
+        double discount = 0.0;
+        int customerCount = 0;
+
+        for (MenuItem item : check)
+        {
+            if(item.isEntree() == true)
+            {
+                customerCount++;
+            }
+        }
+        if(couponApplies() == true)
+        {
+            discount = originalCheck * 0.25;
+        }
+        if (customerCount >= 6)
+        {
+            tip = originalCheck * 0.20;
+        }
+
+        return (totalFinal - discount) + tip;
     }
 }
