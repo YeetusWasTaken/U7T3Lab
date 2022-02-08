@@ -19,9 +19,9 @@ public class Digits
         {
             digitList.add(0);
         }
-        if(num >0)
+        while (num >0)
         {
-            digitList.add(num % 10);
+            digitList.add(0, num % 10);
             num /= 10;
         }
     }
@@ -38,14 +38,13 @@ public class Digits
      */
     public boolean isStrictlyIncreasing()
     {
-        for (int x = 0; x <digitList.size() -1; x++)
+        for (int x = 0; x < digitList.size() - 1; x++)
         {
-            if(digitList.get(x)>= digitList.get(x + 1))
+            if( digitList.get(x) >= digitList.get(x + 1))
             {
                 return false;
             }
-    }
+        }
         return true;
-
-}
+    }
 }
